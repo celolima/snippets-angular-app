@@ -1,0 +1,44 @@
+<app-column-card>
+    <h3>Usage of CSS margin</h3>
+    <p>To center the content inside the Box model, you should</p>
+    <ul>
+        <li>Add a width for the element (width: 400px)</li>
+        <li>Set the zero to vertical margin and auto to the horizontal (margin: 0 auto)</li>        
+    </ul>
+    <pre>
+        <code [innerHTML]="automarginSnippet"></code>
+    </pre>
+</app-column-card>
+
+<app-column-card>
+    <h3>Usage of position</h3>
+    <p>The default position of an element can be changed by setting its position property. The position property can take one of four values:</p>
+    <ul>
+        <li *ngFor="let type of typesOfCssPosition">{{type}}</li>
+    </ul>
+    <h6>Relative to static position</h6>
+    <div class="boxes box-top"></div>
+    <div class="boxes box-bottom"></div>
+
+    <h6>Fixed</h6>
+    <p>The navbar is fixed on top.</p>
+</app-column-card>
+
+<app-column-card>
+    <h6>Z-index</h6>
+    <p>When boxes on a web page have a combination of different positions, the boxes (and therefore, their content) can overlap with each other, making the content difficult to read or consume.</p>
+    <p>To use z-index the position of the elemente should not be static</p>
+    <div class="boxes box-top-z-index"></div>
+    <div class="boxes box-bottom-z-index">/*top: 550px;*/</div>
+</app-column-card>
+
+<app-column-card>
+    <h6>Float</h6>
+    <p>So far, you’ve learned how to specify the exact position of an element using offset properties. If you’re simply interested in moving an element as far left or as far right as possible on the page, you can use the float property.</p>
+    <p>The float property can be set to one of two values:</p>
+    <p>left - this value will move, or float, elements as far left as possible.</p>
+    <p>right - this value will move elements as far right as possible.</p>
+    <pre>
+        <code [innerHTML]="floatSnippet"></code>
+    </pre>
+</app-column-card>

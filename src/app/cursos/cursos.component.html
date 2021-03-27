@@ -1,0 +1,86 @@
+<app-column-card>
+    <h3>Interpolation</h3>
+    <p>Lista de cursos do site: {{linkCursos}}</p>    
+    <p><a [href]="linkCursos">Link using brackets</a></p>
+    <p>Lista de cursos</p>
+    <ul>
+        <li *ngFor="let curso of cursos">
+            {{curso}}
+        </li>
+    </ul>
+
+    <div class="input-group mb-3">
+        <input type="text" #cursoInput
+            placeholder="Curso name"
+            class="form-control"             
+            (keyup.enter)="addCurso(cursoInput.value); cursoInput.value = '';">
+        <div class="input-group-append">
+            <button type="button"                
+                class="btn btn-outline-success" 
+                tooltip="Click to add course" 
+                (click)="addCurso(cursoInput.value);cursoInput.value = '';">
+                Add
+            </button>
+        </div>
+    </div>
+</app-column-card>
+
+<app-column-card>
+    <h3>Class and Style Binding</h3>
+    <div>
+        Selecione uma classe
+        <select #classe (change)="0">
+            <option value="success">Success</option>
+            <option value="info">Info</option>
+            <option value="warning">Warning</option>
+            <option value="danger">Danger</option>
+        </select>
+    </div>
+
+    <div>
+        <div class="alert" role="alert" [class.alert-success]="classe.value == 'success'">
+            Success
+        </div>
+        <div class="alert" role="alert" [class.alert-info]="classe.value == 'info'">
+            Info
+        </div>
+        <div class="alert" role="alert" [class.alert-warning]="classe.value == 'warning'">
+            Warning
+        </div>
+        <div class="alert" role="alert" [class.alert-danger]="classe.value == 'danger'">
+            Danger
+        </div>
+    </div>
+
+</app-column-card>
+<app-column-card>
+    <h3>Event Binding</h3>
+    <div>
+        <button class="btn btn-primary" (click)="alertMe()">Alert Me</button>
+    </div>
+    <div>
+        <p (mouseover)="onOverMe()" (mouseout)="onOverMe()" [class.highlight]="isOver">
+            Highlight on Over Me
+        </p>
+    </div>
+</app-column-card>
+
+<app-column-card>
+    <h3>Two way Binding</h3>
+    <p>Should use ng-model</p>
+    <div>
+        <input type="text" [(ngModel)]="person.name" />
+        <input type="number" [(ngModel)]="person.age" />
+        <p>My name is {{person.name ? person.name : '-'}} and i'm {{person.age ? person.age : '-'}} years old.</p>
+    </div>
+</app-column-card>
+<app-column-card>
+    <h3>Input/Output Properties</h3>
+    <h6>Input</h6>
+    <ul *ngFor="let curso of cursos">
+        <app-curso [nomeCurso]="curso"></app-curso>
+    </ul>
+
+    <h6>Output - value from child {{newValueFromChild}}</h6>
+    <app-output-property (onValueChanged)="getEmit($event)"></app-output-property>
+</app-column-card>

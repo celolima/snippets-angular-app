@@ -1,0 +1,30 @@
+.boxes {
+    width: 120px;
+    height: 70px;
+}
+
+.box-top {
+    background-color: DeepSkyBlue;
+    position: static;
+}
+
+.box-bottom {
+    background-color: greenyellow;
+    position: relative;
+    top: 20px;
+    left: 50px;
+}  
+
+.box-top-z-index {
+    background-color: red;
+    position: relative;
+    z-index: 2;
+  }
+   
+.box-bottom-z-index {
+    text-align: center;
+    background-color: yellow;
+    position: absolute;
+    /*top: 550px;*/
+    z-index: 1;
+}

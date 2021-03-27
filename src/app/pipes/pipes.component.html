@@ -1,0 +1,21 @@
+<app-column-card>
+    <h2>Interpolation Pipes</h2>
+    
+    <p>Title: {{book.title | camelCase}}</p>
+    <p>Editora: {{book.editora}}</p>
+    <p>Idioma: {{book.idioma}} </p>
+    <p>ISBN10: {{book.ISBN10 }} </p>
+    <p>Price: {{book.price | currency:'BRL':true }} or {{book.price}} </p>
+    <p>Release: {{book.release | date:'dd/MM/yyyy'}} or {{book.release}}</p>
+
+    <h6 fontFamilyStyle>Print as Json</h6>
+    <p fontFamilyStyle>{{book | json}}</p>
+</app-column-card>
+
+<app-column-card>
+    <h2>Async Pipes</h2>
+    <h4>Using Observable</h4>
+    <ul>
+        <li *ngFor="let curso of getAsyncCursos()">{{curso}}</li>
+    </ul>
+</app-column-card>

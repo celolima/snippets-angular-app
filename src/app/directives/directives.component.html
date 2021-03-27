@@ -1,0 +1,28 @@
+<app-column-card>
+    <h3 [ngStyle]="{
+            'backgroundColor': (isThumbUp ? 'yellow' : 'white')
+        }">Usage of ngClass and ngStyle</h3>
+    <p>Click on thumb to change it!</p>
+    <span class="material-icons" (click)="toogleThumb()">{{isThumbUp ? 'thumb_up' : 'thumb_down'}}</span>
+    <!-- How to use [ngClass]
+    <span [ngClass]="{
+            'oi-thumb-down' : isThumbUp,
+            'oi-thumb-up' : !isThumbUp
+        }" class="oi oi-thumb-down" (click)="toogleThumb()"></span>
+    -->
+</app-column-card>
+
+<app-column-card>
+    <h3>Directives using ElementRef and Render</h3>
+    <h4>What is Lorem Ipsum?</h4>
+    <p fontFamilyStyle>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+        when an unknown printer took a galley of type and scrambled it to make 
+        a type specimen book. 
+        It has survived not only five centuries, but also the leap into electronic typesetting, 
+        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+        sheets containing Lorem Ipsum passages, and more recently with desktop publishing software 
+        like Aldus PageMaker including versions of Lorem Ipsum.
+    </p>
+</app-column-card>
