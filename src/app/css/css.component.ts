@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CssService } from './css.service';
+import { JustifyContentTypes } from './justify-content-types';
 
 @Component({
   selector: 'app-css',
@@ -7,24 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CssComponent implements OnInit {
 
-  automarginSnippet: string = `
-    p {
-      width: 400px;
-      margin: 0 auto;
-    }`;
-      
-  typesOfCssPosition: string[] = ['static','relative','absolute','fixed'];
+  automarginSnippet: string;
+  typesOfCssPosition: string[];
+  floatSnippet: string;
+  flexProperties: string[];
+  justifyContentTypes: JustifyContentTypes[];
 
-  floatSnippet: string = `
-    .box-bottom {
-      background-color: DeepSkyBlue;
-      float: right;
-    }
-  `;
-
-  constructor() { }
+  constructor(private  cssService: CssService) { }
 
   ngOnInit(): void {
+    this.automarginSnippet = this.cssService.getAutomarginSnippet();
+    this.typesOfCssPosition = this.cssService.getTypesOfCssPosition();
+    this.floatSnippet = this.cssService.getFloatSnippet();
+    this.flexProperties = this.cssService.getFlexProperties();
+    this.justifyContentTypes = this.cssService.getFlexJustifyProperties();
   }
 
 }

@@ -42,3 +42,61 @@
         <code [innerHTML]="floatSnippet"></code>
     </pre>
 </app-column-card>
+
+<app-column-card>
+    <h6>Flex Layout</h6>
+    <p>
+        There are two important components to a flexbox layout: flex containers and flex items. 
+        A flex container is an element on a page that contains flex items. 
+        ll direct child elements of a flex container are flex items. 
+        This distinction is important because some of the properties you will learn in this lesson apply 
+        to flex containers while others apply to flex items.
+    </p>
+    <p>To designate an element as a flex container, set the element’s display property to flex or inline-flex.</p>
+    <ul>
+        <li *ngFor="let prop of flexProperties">{{prop}}</li>
+    </ul>
+</app-column-card>
+
+<app-column-card>
+    <h6>Flex Justify Content</h6>
+    <p>
+        There are {{justifyContentTypes.length}} values for the justify-content property:
+    </p>
+    <ul>
+        <li *ngFor="let tp of justifyContentTypes">{{tp.toString()}}</li>
+    </ul>
+</app-column-card>
+
+<app-column-card>
+    <h6>Flex Start</h6>
+    <div class="container flexstart">
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+    </div>
+    <h6>Flex End</h6>
+    <div class="container flexend">
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+    </div>
+    <h6>Center</h6>
+    <div class="container center">
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+    </div>
+    <h6>Space Around</h6>
+    <div class="container spacearound">
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+    </div>            
+    <h6>Space Between</h6>
+    <div class="container spacebetween">
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+        <div class="boxes"></div>
+    </div>                
+</app-column-card>

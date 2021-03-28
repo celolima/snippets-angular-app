@@ -18,6 +18,7 @@ import { FontFamilyStyleDirective } from './shared/font-family-style.directive';
 import { CssComponent } from './css/css.component';
 import { PipesComponent } from './pipes/pipes.component';
 import { CamelCasePipe } from './pipes/camel-case.pipe';
+import { JustifyContentTypes } from './css/justify-content-types';
 
 registerLocaleData(localePt);
 

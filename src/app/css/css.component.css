@@ -28,3 +28,35 @@
     /*top: 550px;*/
     z-index: 1;
 }
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100px;        
+    background-color: whitesmoke;
+}
+
+.container div {    
+    background-color: dodgerblue;
+    border: 1px solid lightgrey;
+}
+
+.container.flexstart {
+    justify-content: flex-start;
+}
+
+.container.flexend {
+    justify-content: flex-end;
+}
+
+.container.center {
+    justify-content: center;
+}
+
+.container.spacebetween {
+    justify-content: space-between;
+}
+
+.container.spacearound {
+    justify-content: space-around;
+}
