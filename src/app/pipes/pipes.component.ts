@@ -20,16 +20,23 @@ export class PipesComponent implements OnInit {
     release : new Date(2016,10,29),
     dimesao : '21.59 x 3.58 x 27.94 cm',
   };
- 
+
+  text: string;
+  asyncCursos: String[];
+
   constructor(private cursoService: CursoService) { }
 
   ngOnInit(): void {
+    this.getAsyncText().then(resolve => this.text = resolve.toString());
+    this.getAsyncCursos().then(resolve => this.asyncCursos = resolve);
   }
 
-  getAsyncCursos() {
-    // TODO: Implement
-    //return this.cursoService.getAsyncCursos();
-    return this.cursoService.getCursos();
+  getAsyncCursos(){
+    return this.cursoService.getAsyncCursos();
+  }
+
+  getAsyncText() {
+    return this.cursoService.getAsyncText();
   }
 
 }

@@ -14,8 +14,11 @@
 
 <app-column-card>
     <h2>Async Pipes</h2>
-    <h4>Using Observable</h4>
+    <h4>Promise</h4>
+    
     <ul>
-        <li *ngFor="let curso of getAsyncCursos()">{{curso}}</li>
+        <li *ngFor="let curso of asyncCursos">{{curso}}</li>
     </ul>
+    
+    {{text}}
 </app-column-card>
