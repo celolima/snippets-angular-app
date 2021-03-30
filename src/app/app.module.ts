@@ -9,16 +9,15 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { AppComponent } from './app.component';
 import { DirectivesComponent } from './directives/directives.component';
-import { ColumnCardComponent } from './column-card/column-card.component';
+import { ColumnCardComponent } from './shared/column-card/column-card.component';
 import { InputPropertyComponent } from './input-property/input-property.component';
-import { CursosComponent } from './cursos/cursos.component';
+import { CursosComponent } from './data-binding/cursos/cursos.component';
 import { OutputPropertyComponent } from './output-property/output-property.component';
-import { CursoService } from './cursos/curso.service';
+import { CursoService } from './data-binding/cursos/curso.service';
 import { FontFamilyStyleDirective } from './shared/font-family-style.directive';
 import { CssComponent } from './css/css.component';
 import { PipesComponent } from './pipes/pipes.component';
 import { CamelCasePipe } from './pipes/camel-case.pipe';
-import { JustifyContentTypes } from './css/justify-content-types';
 
 registerLocaleData(localePt);
 

@@ -7,14 +7,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" [class.active]="aba == 'home'" 
-                    (click)="aba = 'home'">Data Binding</a>
-                <a class="nav-item nav-link" [class.active]="aba == 'directives'"
-                    (click)="aba = 'directives'">Directives</a>
-                <a class="nav-item nav-link" [class.active]="aba == 'css'" 
-                    (click)="aba = 'css'">CSS</a>
-                <a class="nav-item nav-link" [class.active]="aba == 'pipes'" 
-                    (click)="aba = 'pipes'">Pipes</a>
+                <a class="nav-item nav-link" [routerLink]="['dataBinding']" routerLinkActive="true">Data Binding</a>
+                <a class="nav-item nav-link" [routerLink]="['directives']" routerLinkActive="true">Directives</a>
+                <a class="nav-item nav-link" [routerLink]="['css']" routerLinkActive="true">CSS</a>
+                <a class="nav-item nav-link" [routerLink]="['pipes']" routerLinkActive="true">Pipes</a>
             </div>
         </div>
         <form class="form-inline mt-2 mt-md-0" _lpchecked="1">
@@ -22,11 +18,7 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>        
     </nav>
-    <div class="container" [ngSwitch]="aba">        
-        <app-cursos *ngSwitchCase="'home'"></app-cursos>
-        <app-directives *ngSwitchCase="'directives'"></app-directives>
-        <app-css *ngSwitchCase="'css'"></app-css>
-        <app-pipes *ngSwitchCase="'pipes'"></app-pipes>
+    <div class="container">
+        <router-outlet></router-outlet>  
     </div>
 </div>
-<router-outlet></router-outlet>

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { interval } from 'rxjs';
-import { map, take } from 'rxjs/operators';
-import { CursoService } from '../cursos/curso.service';
+import { CursoService } from '../data-binding/cursos/curso.service';
 
 @Component({
   selector: 'app-pipes',
