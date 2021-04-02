@@ -1,0 +1,30 @@
+.modal-cookie {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 421px;
+    height: 358px;
+    background-color: #2f3337;
+    border: 2px solid;
+    border-radius: 5px;
+    text-align: justify;
+    padding: 25px;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.modal-description {
+    font-size: 15px;
+    color: white;
+    margin-bottom: 50px;
+}
+
+button {
+    display: block;
+    margin-top: 20px;
+}

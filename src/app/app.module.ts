@@ -9,16 +9,14 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { AppComponent } from './app.component';
 import { DirectivesComponent } from './directives/directives.component';
-import { ColumnCardComponent } from './shared/column-card/column-card.component';
 import { InputPropertyComponent } from './input-property/input-property.component';
 import { CursosComponent } from './data-binding/cursos/cursos.component';
 import { OutputPropertyComponent } from './output-property/output-property.component';
 import { CursoService } from './data-binding/cursos/curso.service';
-import { FontFamilyStyleDirective } from './shared/font-family-style.directive';
 import { CssComponent } from './css/css.component';
 import { PipesComponent } from './pipes/pipes.component';
-import { CamelCasePipe } from './pipes/camel-case.pipe';
 import { HomeComponent } from './home/home.component';
+import { SharedModule } from './shared/shared.module';
 
 registerLocaleData(localePt);
 
@@ -30,11 +28,8 @@ registerLocaleData(localePt);
     DirectivesComponent,
     OutputPropertyComponent,    
     InputPropertyComponent,
-    ColumnCardComponent,
-    FontFamilyStyleDirective,
     CssComponent,
     PipesComponent,
-    CamelCasePipe,
     HomeComponent
   ],
   imports: [
@@ -42,7 +37,8 @@ registerLocaleData(localePt);
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    SharedModule
   ],
   providers: [CursoService, DatePipe, { provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
