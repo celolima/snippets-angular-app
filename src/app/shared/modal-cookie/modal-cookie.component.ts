@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalCookieComponent implements OnInit {
 
-  hide: boolean = false;
+  hide: boolean;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.hide = false;
+    this.hide = true;
   }
 
   toogleHide() {

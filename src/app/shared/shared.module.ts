@@ -6,7 +6,7 @@ import { FontFamilyStyleDirective } from './font-family-directive/font-family-st
 import { LogService } from './log-service/log.service';
 import { ModalCookieComponent } from './modal-cookie/modal-cookie.component';
 import { CamelCasePipe } from './camelcase-pipe/camel-case.pipe';
-
+import { AuthService } from './auth/auth.service';
 
 
 @NgModule({
@@ -15,6 +15,6 @@ import { CamelCasePipe } from './camelcase-pipe/camel-case.pipe';
     CommonModule
   ], 
   exports: [ ColumnCardComponent, FontFamilyStyleDirective, ModalCookieComponent, CamelCasePipe ],
-  providers: [ LogService ]
+  providers: [ LogService, AuthService ]
 })
 export class SharedModule { }

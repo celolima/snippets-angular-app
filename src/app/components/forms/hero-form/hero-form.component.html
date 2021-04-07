@@ -1,0 +1,26 @@
+<section class="row justify-content-center">
+    <div class="col-5">
+        
+        <h3>Hero Form</h3>
+        
+        <section>
+            <div class="mb-3">
+                <label class="form-label" for="name">Name</label>
+                <input [(ngModel)]="model.name" class="form-control" type="text" id="name" required>                
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="alterEgo">Alter ego</label>
+                <input [(ngModel)]="model.alterEgo" class="form-control" type="text" id="alterEgo">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="power">Hero Power</label>
+                <select [(ngModel)]="model.power" class="form-control" id="power" class="form-select" required>
+                    <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </section>
+    </div>
+</section>

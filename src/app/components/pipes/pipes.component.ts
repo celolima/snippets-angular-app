@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CursoService } from '../data-binding/cursos/curso.service';
+import { CursoService } from '../cursos/curso.service';
+
 
 @Component({
   selector: 'app-pipes',
