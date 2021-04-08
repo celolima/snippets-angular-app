@@ -1,26 +1,54 @@
 <section class="row justify-content-center">
     <div class="col-5">
-        
-        <h3>Hero Form</h3>
-        
-        <section>
-            <div class="mb-3">
-                <label class="form-label" for="name">Name</label>
-                <input [(ngModel)]="model.name" class="form-control" type="text" id="name" required>                
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="alterEgo">Alter ego</label>
-                <input [(ngModel)]="model.alterEgo" class="form-control" type="text" id="alterEgo">
-            </div>
+        <div [hidden]="submitted">
+            <h3>Hero Form</h3>
 
-            <div class="mb-3">
-                <label class="form-label" for="power">Hero Power</label>
-                <select [(ngModel)]="model.power" class="form-control" id="power" class="form-select" required>
-                    <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
-                </select>
-            </div>
+            <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </section>
+                <div class="mb-3">
+                    <label class="form-label" for="name">Name</label>
+                    <input class="form-control" type="text" id="name" required [(ngModel)]="model.name" name="name"
+                        #name="ngModel">
+                    <div [hidden]="name.valid || name.pristine" class="alert-danger">Name is required</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="alterEgo">Alter ego</label>
+                    <input [(ngModel)]="model.alterEgo" class="form-control" type="text" id="alterEgo" name="alterEgo">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="power">Hero Power</label>
+                    <select [(ngModel)]="model.power" class="form-control" id="power" class="form-select" name="power"
+                        required>
+                        <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+                    </select>
+                </div>
+                <div class="d-grid gap-2 col-3">
+                    <button type="submit" class="btn btn-success btn-block" [disabled]="!heroForm.form.valid">Submit</button>
+                    <button type="button" class="btn btn-primary btn-block" (click)="newHero(); heroForm.reset()">New Hero</button>
+                </div>
+
+            </form>
+        </div>
+
+        <div [hidden]="!submitted">
+            <h2>You submitted the following:</h2>
+            <div class="row">
+                <div class="col-xs-3">Name</div>
+                <div class="col-xs-9">{{ model.name }}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">Alter Ego</div>
+                <div class="col-xs-9">{{ model.alterEgo }}</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">Power</div>
+                <div class="col-xs-9">{{ model.power }}</div>
+            </div>
+            <br>
+            <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+        </div>
+
     </div>
 </section>

@@ -18,13 +18,17 @@ export class HeroFormComponent implements OnInit {
   constructor(private herosService: HerosService) { this.model = new Hero(); }
 
   async ngOnInit() {
-    this.powers = await this.herosService.getPowers();
-    this.model = new Hero(18, 'Dr IQ', this.powers[0], 'Chuck Overstreet');
+    this.powers = await this.herosService.getPowers();    
   }
 
-  onSubmit() { this.submitted = true; }
+  onSubmit() { 
+    this.submitted = true; 
+    
+    this.herosService.addHero(this.model);        
+  }
 
-  // TODO: Remove this when we're done
-  get diagnostic() { return JSON.stringify(this.model); }
+  newHero() {
+    this.model = new Hero(42, '', '');
+  }
 
 }
