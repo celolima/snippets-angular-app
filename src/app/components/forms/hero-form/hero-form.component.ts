@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AddressService } from 'src/app/shared/address/address.service';
 import { Hero } from '../hero';
 import { HerosService } from './heros.service';
 
@@ -15,7 +16,8 @@ export class HeroFormComponent implements OnInit {
 
   submitted = false;
 
-  constructor(private herosService: HerosService) { this.model = new Hero(); }
+  constructor(private herosService: HerosService,
+    private addressService: AddressService) { this.newHero(); }
 
   async ngOnInit() {
     this.powers = await this.herosService.getPowers();    
@@ -24,11 +26,33 @@ export class HeroFormComponent implements OnInit {
   onSubmit() { 
     this.submitted = true; 
     
-    this.herosService.addHero(this.model);        
+    this.herosService.addHero(this.model);
   }
 
   newHero() {
-    this.model = new Hero(42, '', '');
+    this.model = {endereco: {cep: '',numero: 0,complemento: '', rua: '', bairro: '', cidade: '', estado: ''} };
+  }
+
+  fieldHasError(field) {
+    return field.invalid && field.dirty;
+  }
+
+  fieldRequiredMsg(field) {
+    return `${field.name} is required`;
+  }
+
+  getCep() {
+    this.addressService.getCep(this.model.endereco.cep).subscribe((dados: any) => {
+      this.model.endereco = {
+        cep: dados.cep,
+        numero: 0,
+        complemento: '',
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf,
+        rua: dados.localidade
+      };
+    });
   }
 
 }

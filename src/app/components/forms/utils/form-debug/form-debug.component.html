@@ -1,0 +1,12 @@
+<div class="details" [hidden]="!form">
+    <h6>Form details</h6>
+    <pre>
+        isFormValid: {{form.valid}}
+    </pre>
+    <pre>
+        isFormSubmitted: {{form.submitted}}
+    </pre>
+    <pre>
+        values: {{form.value | json}}
+    </pre>
+</div>

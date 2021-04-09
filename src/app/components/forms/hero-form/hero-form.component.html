@@ -1,5 +1,7 @@
 <section class="row justify-content-center">
+    
     <div class="col-5">
+        
         <div [hidden]="submitted">
             <h3>Hero Form</h3>
 
@@ -9,7 +11,7 @@
                     <label class="form-label" for="name">Name</label>
                     <input class="form-control" type="text" id="name" required [(ngModel)]="model.name" name="name"
                         #name="ngModel">
-                    <div [hidden]="name.valid || name.pristine" class="alert-danger">Name is required</div>
+                    <app-field-control-error [showError]="fieldHasError(name)" [msgError]="fieldRequiredMsg(name)"></app-field-control-error>
                 </div>
 
                 <div class="mb-3">
@@ -20,35 +22,60 @@
                 <div class="mb-3">
                     <label class="form-label" for="power">Hero Power</label>
                     <select [(ngModel)]="model.power" class="form-control" id="power" class="form-select" name="power"
-                        required>
+                        required #power="ngModel">
                         <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+                        <app-field-control-error [showError]="fieldHasError(power)" [msgError]="fieldRequiredMsg(power)"></app-field-control-error>
                     </select>
                 </div>
-                <div class="d-grid gap-2 col-3">
-                    <button type="submit" class="btn btn-success btn-block" [disabled]="!heroForm.form.valid">Submit</button>
-                    <button type="button" class="btn btn-primary btn-block" (click)="newHero(); heroForm.reset()">New Hero</button>
+
+                <div class="row">
+                    <div class="col">
+                        <label class="form-label" for="cep">CEP</label>
+                        <input [(ngModel)]="model.endereco.cep" class="form-control" type="string" id="cep" name="cep" required 
+                        #cep="ngModel"
+                        (blur)="getCep()">
+                        <app-field-control-error [showError]="fieldHasError(cep)" [msgError]="fieldRequiredMsg(cep)"></app-field-control-error>
+                    </div>
+                    <div class="col">
+                        <label class="form-label" for="numero">Numero</label>
+                        <input [(ngModel)]="model.endereco.numero" class="form-control" type="number" id="numero" name="numero">
+                    </div>
+                    <div class="col">
+                        <label class="form-label" for="complemento">Complemento</label>
+                        <input [(ngModel)]="model.endereco.complemento" class="form-control" type="string" id="complemento" name="complemento">
+                    </div>                    
                 </div>
 
-            </form>
-        </div>
+                <div class="row">
+                    <div class="col">
+                        <label class="form-label" for="rua">Rua</label>
+                        <input [(ngModel)]="model.endereco.rua" class="form-control" type="string" id="rua" name="rua" disabled>
+                    </div>
+                </div>
 
-        <div [hidden]="!submitted">
-            <h2>You submitted the following:</h2>
-            <div class="row">
-                <div class="col-xs-3">Name</div>
-                <div class="col-xs-9">{{ model.name }}</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-3">Alter Ego</div>
-                <div class="col-xs-9">{{ model.alterEgo }}</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-3">Power</div>
-                <div class="col-xs-9">{{ model.power }}</div>
-            </div>
-            <br>
-            <button class="btn btn-primary" (click)="submitted=false">Edit</button>
-        </div>
+                <div class="row">
+                    <div class="col">
+                        <label class="form-label" for="bairro">Bairro</label>
+                        <input [(ngModel)]="model.endereco.bairro" class="form-control" type="string" id="bairro" name="bairro" disabled>
+                    </div>
+                    <div class="col">
+                        <label class="form-label" for="cidade">Cidade</label>
+                        <input [(ngModel)]="model.endereco.cidade" class="form-control" type="string" id="cidade" name="cidade" disabled>
+                    </div>
+                    <div class="col">
+                        <label class="form-label" for="estado">Estado</label>
+                        <input [(ngModel)]="model.endereco.estado" class="form-control" type="string" id="estado" name="estado" disabled>
+                    </div>                    
+                </div>                
+                                
+                <div class="buttons d-grid gap-2 d-md-flex justify-content-md-start">
+                    <button type="submit" class="btn btn-outline-success" [disabled]="!heroForm.form.valid">Submit</button>
+                    <button type="button" class="btn btn-outline-primary" (click)="newHero(); heroForm.reset()">New Hero</button>
+                </div>
+            </form>
+        </div>    
 
     </div>
+    <app-form-debug [form]="heroForm"  class="col-5"></app-form-debug>
 </section>
+

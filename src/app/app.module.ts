@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
 
 import { AppComponent } from './app.component';
 
 import { CssComponent } from './components/css/css.component';
-
 
 import { SharedModule } from './shared/shared.module';
 import { PipesComponent } from './components/pipes/pipes.component';
@@ -19,8 +19,8 @@ import { OutputPropertyComponent } from './components/output-property/output-pro
 import { InputPropertyComponent } from './components/input-property/input-property.component';
 import { CursoService } from './components/cursos/curso.service';
 import { LoginComponent } from './components/login/login.component';
-import { AuthGuard } from './guards/auth.guard';
-import { HeroFormComponent } from './components/forms/hero-form/hero-form.component';
+import { FormModule } from './components/forms/form.module';
+import { AddressService } from './shared/address/address.service';
 
 registerLocaleData(localePt);
 
@@ -35,17 +35,18 @@ registerLocaleData(localePt);
     CssComponent,
     PipesComponent,
     HomeComponent,
-    LoginComponent,
-    HeroFormComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
+    HttpClientModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    FormModule
   ],
-  providers: [CursoService, DatePipe, { provide: LOCALE_ID, useValue: 'pt-BR' }],
+  providers: [CursoService, DatePipe, { provide: LOCALE_ID, useValue: 'pt-BR' }, AddressService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
