@@ -1,0 +1,77 @@
+<section class="row justify-content-center">
+
+    <div class="col-5">
+
+        <div>
+            <h3>Data Driven Form - Reactive</h3>
+
+            <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+                <article>
+                    <div class="mb-3">
+                        <label class="form-label" for="name">Name</label>
+                        <input class="form-control" type="text" id="name" formControlName="name" required>
+                        <app-field-control-error [showError]="fieldHasError('name')"
+                            [msgError]="fieldRequiredMsg('name')"></app-field-control-error>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="email">Email</label>
+                        <input class="form-control" type="text" id="email" formControlName="email" required>
+                        <app-field-control-error [showError]="fieldHasError('email')"
+                            [msgError]="fieldRequiredMsg('email')"></app-field-control-error>
+                    </div>
+                </article>
+
+                <article formGroupName="endereco">
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label" for="cep">CEP</label>
+                            <input class="form-control" type="string" id="cep" formControlName="cep" (blur)="getCep()"
+                                required>
+                            <app-field-control-error [showError]="fieldHasError('endereco.cep')"
+                                [msgError]="fieldRequiredMsg('endereco.cep')"></app-field-control-error>
+                        </div>
+                        <div class="col">
+                            <label class="form-label" for="numero">Numero</label>
+                            <input class="form-control" type="number" id="numero" formControlName="numero">
+                        </div>
+                        <div class="col">
+                            <label class="form-label" for="complemento">Complemento</label>
+                            <input class="form-control" type="string" id="complemento" formControlName="complemento">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label" for="rua">Rua</label>
+                            <input class="form-control" type="string" id="rua" formControlName="rua">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label" for="bairro">Bairro</label>
+                            <input class="form-control" type="string" id="bairro" formControlName="bairro">
+                        </div>
+                        <div class="col">
+                            <label class="form-label" for="cidade">Cidade</label>
+                            <input class="form-control" type="string" id="cidade" formControlName="cidade">
+                        </div>
+                        <div class="col">
+                            <label class="form-label" for="estado">Estado</label>
+                            <input class="form-control" type="string" id="estado" formControlName="estado">
+                        </div>
+                    </div>
+
+                </article>
+
+                <div class="buttons d-grid gap-2 d-md-flex justify-content-md-start">
+                    <button type="submit" class="btn btn-outline-success" [disabled]="!formulario.valid">Submit</button>
+                    <button type="button" class="btn btn-outline-primary" (click)="formulario.reset()">New</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <app-form-debug [form]="formulario" class="col-5"></app-form-debug>
+</section>
