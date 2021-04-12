@@ -1,11 +1,29 @@
 <div class="row">
-    <div class="mb-3">
-      <label for="login" class="form-label">login</label>
-      <input [(ngModel)]="user.login" type="email" class="form-control" id="login">
-    </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <input [(ngModel)]="user.password" type="password" class="form-control" id="password">
-    </div>
-    <button type="submit" class="btn btn-primary" (click)="logon()">Submit</button>
+  <div class="col-sm-3">
+    <label for="login" class="form-label">login</label>
+    <input
+      [(ngModel)]="user.login"
+      type="email"
+      class="form-control"
+      id="login"
+    />
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-3">
+    <label for="password" class="form-label">password</label>
+    <input
+      [(ngModel)]="user.password"
+      type="password"
+      class="form-control"
+      id="password"
+    />
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-3">
+    <button type="submit" class="btn btn-primary" (click)="logon()">
+      Submit
+    </button>
+  </div>
 </div>

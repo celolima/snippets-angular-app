@@ -2,6 +2,15 @@ div.container {
     margin: 100px auto;
 }
 
-#iconHome {
+.material-icons {
     font-size: 30px;
+}
+
+.nav-logout {
+  flex-grow: 2;
+  justify-content: flex-end;
+}
+
+.nav-logout a {
+  cursor: pointer;
 }

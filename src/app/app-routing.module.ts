@@ -11,7 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PipesComponent } from './components/pipes/pipes.component';
 import { AuthGuard } from './guards/auth.guard';
 
-const routes: Routes = [ 
+const routes: Routes = [
     { path: 'dataBinding', component: CursosComponent, canActivate: [AuthGuard] },
     { path: 'directives', component: DirectivesComponent, canActivate: [AuthGuard] },
     { path: 'css', component: CssComponent, canActivate: [AuthGuard] },
@@ -19,8 +19,8 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'hForm', component: HeroFormComponent },
     { path: 'dataForm', component: DataFormComponent },
-    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },    
-    { path: '**', redirectTo: 'dataForm', pathMatch: 'full' }
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: '**', redirectTo: 'login', pathMatch: 'full' }
   ];
 
 @NgModule({

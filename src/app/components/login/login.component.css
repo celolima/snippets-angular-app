@@ -1,0 +1,14 @@
+div {
+  justify-content: center;
+}
+
+label {
+  font-family: 'Press Start 2P', cursive;
+  font-size: small;
+}
+
+button {
+  margin-top: 25px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: small;
+}

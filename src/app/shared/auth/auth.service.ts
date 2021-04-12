@@ -9,7 +9,7 @@ export class AuthService {
 
   private _isUserAuthenticate = false;
 
-  showMenuEmitter = new EventEmitter<boolean>(); 
+  showMenuEmitter = new EventEmitter<boolean>();
 
   constructor(private router: Router) { }
 
@@ -18,7 +18,7 @@ export class AuthService {
     this.emitt();
 
     if(this._isUserAuthenticate) {
-      this.router.navigate(['']);
+      this.router.navigate(['home']);
     }
   }
 

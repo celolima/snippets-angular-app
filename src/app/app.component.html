@@ -7,16 +7,15 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="material-icons" id="iconHome" [routerLink]="['']">home</a>
-            <!--
-            <a class="nav-item nav-link" [routerLink]="['login']" routerLinkActive="true">Login</a>
-            -->
             <a class="nav-item nav-link" [routerLink]="['dataBinding']" routerLinkActive="true">Data Binding</a>
             <a class="nav-item nav-link" [routerLink]="['directives']" routerLinkActive="true">Directives</a>
             <a class="nav-item nav-link" [routerLink]="['css']" routerLinkActive="true">CSS</a>
             <a class="nav-item nav-link" [routerLink]="['pipes']" routerLinkActive="true">Pipes</a>
-            <a class="nav-item nav-link" [routerLink]="['hForm']" routerLinkActive="true">Hero Form - Template Driven</a>
-            <a class="nav-item nav-link" [routerLink]="['dataForm']" routerLinkActive="true">Data Driven</a>
-            <a class="nav-item nav-link"(click)="logout()">logout</a>
+            <a class="nav-item nav-link" [routerLink]="['hForm']" routerLinkActive="true">Template Form</a>
+            <a class="nav-item nav-link" [routerLink]="['dataForm']" routerLinkActive="true">Reactive Form</a>
+        </div>
+        <div class="navbar-nav nav-logout">
+          <a class="material-icons" id="iconHome" [routerLink]="['']">face</a>
         </div>
     </div>
 </nav>
