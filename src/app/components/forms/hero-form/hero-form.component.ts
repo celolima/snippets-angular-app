@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AddressService } from 'src/app/shared/address/address.service';
-import { Hero } from '../hero';
+
+import { Hero } from './../models/hero';
 import { HerosService } from './heros.service';
 
 @Component({
@@ -20,12 +21,12 @@ export class HeroFormComponent implements OnInit {
     private addressService: AddressService) { this.newHero(); }
 
   async ngOnInit() {
-    this.powers = await this.herosService.getPowers();    
+    this.powers = await this.herosService.getPowers();
   }
 
-  onSubmit() { 
-    this.submitted = true; 
-    
+  onSubmit() {
+    this.submitted = true;
+
     this.herosService.addHero(this.model);
   }
 

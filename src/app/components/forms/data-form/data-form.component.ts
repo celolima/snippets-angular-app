@@ -1,6 +1,11 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddressService } from 'src/app/shared/address/address.service';
+
+import { CidadesBr } from './../models/cidades-br';
+import { EstadosBr } from './../models/estado-br';
+import { FormValidations } from '../utils/FormValidations';
 
 @Component({
   selector: 'app-data-form',
@@ -10,6 +15,12 @@ import { AddressService } from 'src/app/shared/address/address.service';
 export class DataFormComponent implements OnInit {
 
   formulario: FormGroup;
+
+  $states: Observable<EstadosBr[]>;
+
+  cities: CidadesBr[];
+
+  frameworksLabels = ['Angular','React','VueJs'];
 
   constructor(private formBuilder: FormBuilder,
     private addressService: AddressService) { }
@@ -25,29 +36,46 @@ export class DataFormComponent implements OnInit {
         cep: [null],
         numero: [null],
         complemento: [null],
-        rua: [{value: null, disabled: true}, Validators.required],
-        bairro: [{value: null, disabled: true}, Validators.required],
-        cidade: [{value: null, disabled: true}, Validators.required],
-        estado: [{value: null, disabled: true}, Validators.required]
-      })
-      
+        rua: [{value: null, disabled: false}, Validators.required],
+        bairro: [{value: null, disabled: false}, Validators.required],
+        cidade: [{value: null, disabled: false}, Validators.required],
+        estado: [{value: null}, Validators.required],
+      }),
+
+      frameworks: this.buildFrameworks()
+
+    });
+
+    this.$states = this.addressService.getStates();
+
+    this.addressService.getCities('0').subscribe((data) => {
+      console.log(data[0]);
     });
   }
 
+  frameworksAsArray() {
+    return this.formulario.get('frameworks') as FormArray;
+  }
+
+  buildFrameworks() {
+    const values = this.frameworksLabels.map(v => new FormControl(false));
+    return this.formBuilder.array(values, FormValidations.requiredMinCheckbox(1));
+  }
+
+
   fieldHasError(field: string) {
-    return !this.formulario.get(field).valid && 
+    return !this.formulario.get(field).valid &&
       this.formulario.get(field).touched;
   }
 
   fieldRequiredMsg(field: string) {
-    // return this.formulario.get(field)?.errors['email'] 
-    //   ? `${field} is invalid` 
+    // return this.formulario.get(field)?.errors['email']
+    //   ? `${field} is invalid`
     //   : `${field} is required`;
     return `${field} is invalid`;
   }
 
-  getCep() {  
-    
+  getCep() {
     this.addressService.getCep(this.formulario.get('endereco.cep').value).subscribe((dados: any) => {
       this.formulario.get('endereco.rua').setValue(dados.logradouro);
       this.formulario.get('endereco.bairro').setValue(dados.bairro);
@@ -59,7 +87,7 @@ export class DataFormComponent implements OnInit {
   onSubmit() {
     if(this.formulario.valid) {
       console.log(this.formulario.value);
-    }    
+    }
   }
 
 }

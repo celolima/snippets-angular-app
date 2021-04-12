@@ -1,6 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
-import { Endereco } from 'src/app/components/forms/hero';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Endereco } from 'src/app/components/forms/models/hero';
+
+import { EstadosBr } from './../../components/forms/models/estado-br';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +25,14 @@ export class AddressService {
 
     // template literal
     return this.http.get(`//viacep.com.br/ws/${cep}/json`).pipe();
+  }
+
+  getStates(): Observable<EstadosBr[]> {
+    return this.http.get('/assets/address/estados.json').pipe(
+      map((response: EstadosBr[]) => response as EstadosBr[]));
+  }
+
+  getCities(state: string) {
+    return this.http.get('/assets/address/cidades.json').pipe();
   }
 }
