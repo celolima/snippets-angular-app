@@ -19,12 +19,22 @@
                         <input class="form-control" type="text" id="email" formControlName="email" placeholder="seunome@email.com" required>
                         <app-field-control-error [showError]="fieldRequired('email')"
                             [msgError]="fieldRequiredMsg('email')"></app-field-control-error>
+                        <app-field-control-error [showError]="fieldHasError('email')"
+                            [msgError]="fieldRequiredMsg('email')"></app-field-control-error>
+                        <app-field-control-error [showError]="formulario.get('email').hasError('jaExiste')"
+                            msgError="Email já cadastrado"></app-field-control-error>
+                        <app-field-control-error [showError]="formulario.get('email').status === 'PENDING'"
+                            msgError="Validando email" alertColor="INFO"></app-field-control-error>
+                            <app-field-control-error alertColor="INFO" [showError]="formulario.get('email').status === 'VALID'"
+                            msgError="Email valido"></app-field-control-error>
                     </div>
 
                     <div class="mb-3">
                       <label class="form-label" for="conf-email">Confirmar email</label>
                       <input class="form-control" type="text" id="conf-email" formControlName="emailConfirmation" placeholder="seunome@email.com" required>
                       <app-field-control-error [showError]="fieldRequired('emailConfirmation')"
+                          [msgError]="fieldRequiredMsg('emailConfirmation')"></app-field-control-error>
+                          <app-field-control-error [showError]="fieldHasError('emailConfirmation')"
                           [msgError]="fieldRequiredMsg('emailConfirmation')"></app-field-control-error>
                       <app-field-control-error [showError]="!fieldRequired('emailConfirmation') && formulario.get('emailConfirmation').hasError('equalsTo')"
                           msgError="A confirmação do email não condiz com o email "></app-field-control-error>

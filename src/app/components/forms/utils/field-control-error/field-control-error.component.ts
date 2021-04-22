@@ -9,6 +9,7 @@ export class FieldControlErrorComponent implements OnInit {
 
   @Input() showError: boolean;
   @Input() msgError: string;
+  @Input() alertColor = 'ERROR';
 
   constructor() { }
 

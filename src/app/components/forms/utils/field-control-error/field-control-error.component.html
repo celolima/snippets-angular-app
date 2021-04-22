@@ -1,1 +1,5 @@
-<div [hidden]="!showError" class="alert-danger">{{msgError | titlecase}}</div>
+<div [hidden]="!showError"
+  [ngClass]="{
+    'alert-danger' : alertColor === 'ERROR',
+    'alert-info' : alertColor === 'INFO'
+  }">{{msgError | titlecase}}</div>

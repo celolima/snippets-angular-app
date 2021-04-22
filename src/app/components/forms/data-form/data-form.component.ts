@@ -6,6 +6,9 @@ import { AddressService } from 'src/app/shared/address/address.service';
 import { CidadesBr } from './../models/cidades-br';
 import { EstadosBr } from './../models/estado-br';
 import { FormValidations } from '../utils/form-validations';
+import { VerifyEmailServiceService } from './services/verifyEmailService.service';
+import { map, tap } from 'rxjs/operators';
+import { ThrowStmt } from '@angular/compiler';
 
 
 @Component({
@@ -24,14 +27,15 @@ export class DataFormComponent implements OnInit {
   frameworksLabels = ['Angular','React','VueJs'];
 
   constructor(private formBuilder: FormBuilder,
-    private addressService: AddressService) { }
+    private addressService: AddressService,
+    private verifyEmailService: VerifyEmailServiceService) { }
 
   ngOnInit(): void {
 
     // Generates via builder, syntax sugar
     this.formulario = this.formBuilder.group({
       name: [null, [Validators.required, Validators.min(3), Validators.max(20)]],
-      email: [null, [Validators.required, Validators.email]],
+      email: [null, [Validators.required, Validators.email], this.verificaExistenciaEmail.bind(this)],
       emailConfirmation: [null, [Validators.required, Validators.email, FormValidations.equalsTo('email')]],
 
       endereco: this.formBuilder.group({
@@ -70,12 +74,13 @@ export class DataFormComponent implements OnInit {
   }
 
   fieldHasError(field: string) {
-    return !this.formulario.get(field).valid &&
+    return !this.fieldRequired(field) &&
+      !this.formulario.get(field).valid &&
       this.formulario.get(field).touched;
   }
 
   fieldRequiredMsg(field: string) {
-    return `This field is required`;
+    return `This field has error`;
   }
 
   getCep() {
@@ -85,6 +90,14 @@ export class DataFormComponent implements OnInit {
       this.formulario.get('endereco.cidade').setValue(dados.localidade);
       this.formulario.get('endereco.estado').setValue(dados.uf);
     });
+  }
+
+  verificaExistenciaEmail(formControl: FormControl) {
+    return this.verifyEmailService.verifyEmail(formControl.value)
+      .pipe(
+        map(existeEmail => existeEmail ? { jaExiste: true } : null),
+        tap(console.log)
+      );
   }
 
   onSubmit() {
