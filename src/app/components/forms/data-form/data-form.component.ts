@@ -5,7 +5,8 @@ import { AddressService } from 'src/app/shared/address/address.service';
 
 import { CidadesBr } from './../models/cidades-br';
 import { EstadosBr } from './../models/estado-br';
-import { FormValidations } from '../utils/FormValidations';
+import { FormValidations } from '../utils/form-validations';
+
 
 @Component({
   selector: 'app-data-form',
@@ -31,9 +32,10 @@ export class DataFormComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       name: [null, [Validators.required, Validators.min(3), Validators.max(20)]],
       email: [null, [Validators.required, Validators.email]],
+      emailConfirmation: [null, [Validators.required, Validators.email, FormValidations.equalsTo('email')]],
 
       endereco: this.formBuilder.group({
-        cep: [null],
+        cep: [null, [Validators.required, FormValidations.cepValidator]],
         numero: [null],
         complemento: [null],
         rua: [{value: null, disabled: false}, Validators.required],
@@ -62,6 +64,10 @@ export class DataFormComponent implements OnInit {
     return this.formBuilder.array(values, FormValidations.requiredMinCheckbox(1));
   }
 
+  fieldRequired(field: string) {
+    return this.formulario.get(field).hasError('required') &&
+      (this.formulario.get(field).touched || this.formulario.get(field).dirty);
+  }
 
   fieldHasError(field: string) {
     return !this.formulario.get(field).valid &&
@@ -69,10 +75,7 @@ export class DataFormComponent implements OnInit {
   }
 
   fieldRequiredMsg(field: string) {
-    // return this.formulario.get(field)?.errors['email']
-    //   ? `${field} is invalid`
-    //   : `${field} is required`;
-    return `${field} is invalid`;
+    return `This field is required`;
   }
 
   getCep() {

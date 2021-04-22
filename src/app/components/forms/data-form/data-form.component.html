@@ -16,10 +16,19 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="email">Email</label>
-                        <input class="form-control" type="text" id="email" formControlName="email" required>
-                        <app-field-control-error [showError]="fieldHasError('email')"
+                        <input class="form-control" type="text" id="email" formControlName="email" placeholder="seunome@email.com" required>
+                        <app-field-control-error [showError]="fieldRequired('email')"
                             [msgError]="fieldRequiredMsg('email')"></app-field-control-error>
                     </div>
+
+                    <div class="mb-3">
+                      <label class="form-label" for="conf-email">Confirmar email</label>
+                      <input class="form-control" type="text" id="conf-email" formControlName="emailConfirmation" placeholder="seunome@email.com" required>
+                      <app-field-control-error [showError]="fieldRequired('emailConfirmation')"
+                          [msgError]="fieldRequiredMsg('emailConfirmation')"></app-field-control-error>
+                      <app-field-control-error [showError]="!fieldRequired('emailConfirmation') && formulario.get('emailConfirmation').hasError('equalsTo')"
+                          msgError="A confirmação do email não condiz com o email "></app-field-control-error>
+                  </div>
                 </article>
 
                 <article formGroupName="endereco">
@@ -28,8 +37,10 @@
                           <input class="form-control" placeholder="CEP" type="string" id="cep" formControlName="cep" required>
                           <button type="button" class="btn btn-outline-secondary material-icons" (click)="getCep()">search</button>
                       </div>
-                      <app-field-control-error [showError]="fieldHasError('endereco.cep')"
-                      [msgError]="fieldRequiredMsg('endereco.cep')"></app-field-control-error>
+                      <app-field-control-error [showError]="fieldRequired('endereco.cep')"
+                        [msgError]="fieldRequiredMsg('endereco.cep')"></app-field-control-error>
+                      <app-field-control-error [showError]="formulario.get('endereco.cep').hasError('cepInvalido')"
+                        msgError="Cep inválido"></app-field-control-error>
                     </div>
 
                     <div class="row">
