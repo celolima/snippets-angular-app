@@ -1,3 +1,4 @@
+import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -8,10 +9,10 @@ import { ModalCookieComponent } from './modal-cookie/modal-cookie.component';
 
 
 @NgModule({
-  declarations: [ ColumnCardComponent, FontFamilyStyleDirective, ModalCookieComponent, CamelCasePipe ],
+  declarations: [ ColumnCardComponent, FontFamilyStyleDirective, ModalCookieComponent, CamelCasePipe, ErrorMsgComponent ],
   imports: [
     CommonModule
   ],
-  exports: [ ColumnCardComponent, FontFamilyStyleDirective, ModalCookieComponent, CamelCasePipe ]
+  exports: [ ColumnCardComponent, FontFamilyStyleDirective, ModalCookieComponent, CamelCasePipe, ErrorMsgComponent ]
 })
 export class SharedModule { }

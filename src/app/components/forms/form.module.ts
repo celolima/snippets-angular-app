@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { DataFormComponent } from './data-form/data-form.component';
 import { HeroFormComponent } from './hero-form/hero-form.component';
@@ -12,7 +13,8 @@ import { FormDebugComponent } from './utils/form-debug/form-debug.component';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports: [
     HeroFormComponent,

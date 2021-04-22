@@ -34,7 +34,7 @@ export class DataFormComponent implements OnInit {
 
     // Generates via builder, syntax sugar
     this.formulario = this.formBuilder.group({
-      name: [null, [Validators.required, Validators.min(3), Validators.max(20)]],
+      name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       email: [null, [Validators.required, Validators.email], this.verificaExistenciaEmail.bind(this)],
       emailConfirmation: [null, [Validators.required, Validators.email, FormValidations.equalsTo('email')]],
 
@@ -95,8 +95,7 @@ export class DataFormComponent implements OnInit {
   verificaExistenciaEmail(formControl: FormControl) {
     return this.verifyEmailService.verifyEmail(formControl.value)
       .pipe(
-        map(existeEmail => existeEmail ? { jaExiste: true } : null),
-        tap(console.log)
+        map(existeEmail => existeEmail ? { jaExiste: true } : null)
       );
   }
 
