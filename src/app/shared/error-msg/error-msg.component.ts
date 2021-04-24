@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'error-msg',
+  selector: 'app-error-msg',
   templateUrl: './error-msg.component.html',
   styleUrls: ['./error-msg.component.css']
 })
@@ -14,16 +14,15 @@ export class ErrorMsgComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-
+  ngOnInit(): void {
   }
 
-  get errorMessage() {
-
-
-    for(const propertyName in this.control.errors) {
-
-      if(this.control.touched) {
+  get errorMessage(): any {
+    if (this.label === 'Nome') {
+      console.log(this.control);
+    }
+    for (const propertyName in this.control.errors) {
+      if (this.control.touched) {
         return FormValidations.getErrorMsg(this.label, propertyName, this.control.errors[propertyName]);
       }
     }

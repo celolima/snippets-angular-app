@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CidadesBr } from 'src/app/components/forms/models/cidades-br';
 import { Endereco } from 'src/app/components/forms/models/hero';
 
 import { EstadosBr } from './../../components/forms/models/estado-br';
@@ -13,15 +14,13 @@ export class AddressService {
 
   constructor(private http: HttpClient) { }
 
-  getCep(value: string) {
+  getCep(value: string): Observable<any> {
     const cep = value.replace(/\D/g, '');
     const isValid = /^[0-9]{8}$/;
 
     if(!isValid) {
       throw new Error('Invalid CEP');
     }
-
-    let address: Endereco;
 
     // template literal
     return this.http.get(`//viacep.com.br/ws/${cep}/json`).pipe();
@@ -32,7 +31,10 @@ export class AddressService {
       map((response: EstadosBr[]) => response as EstadosBr[]));
   }
 
-  getCities(state: string) {
-    return this.http.get('/assets/address/cidades.json').pipe();
+  getCities(idState: number): Observable<CidadesBr[]> {
+    return this.http.get('/assets/address/cidades.json').pipe(
+      // map((response: CidadesBr[]) => response as CidadesBr[]));
+      // tslint:disable-next-line: triple-equals
+      map((cidades: CidadesBr[]) => cidades.filter(c => c.estado == idState)));
   }
 }

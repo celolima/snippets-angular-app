@@ -8,20 +8,21 @@
             <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
                 <article>
 
-                  <app-input-field ngDefaultControl formControlName="name"
+                  <app-input-field ngDefaultControl
+                    formControlName="name"
                     class="mb-3"
                     id="name"
                     label="Nome"
                     type="text"
                     placeholder="Jonh Smith"
-                    [formControl]="formulario.get('name')">
+                    [formControl]="getField('name')">
                   </app-input-field>
 
                   <!--
                     <div class="mb-3">
                         <label class="form-label" for="name">Name</label>
                         <input class="form-control" type="text" id="name" formControlName="name" required>
-                        <error-msg [control]="formulario.get('name')" label="Nome"></error-msg>
+                        <error-msg [control]="getField('name')" label="Nome"></error-msg>
                     </div>
                   -->
                     <div class="mb-3">
@@ -33,12 +34,13 @@
                             [msgError]="fieldRequiredMsg('email')"></app-field-control-error>
                         <app-field-control-error [showError]="fieldHasError('email')"
                             [msgError]="fieldRequiredMsg('email')"></app-field-control-error>
+                        <app-error-msg [control]="getField('email')" label="Email"></app-error-msg>
                         -->
-                        <error-msg [control]="formulario.get('email')" label="Email"></error-msg>
 
-                        <app-field-control-error [showError]="formulario.get('email').status === 'PENDING'"
+
+                        <app-field-control-error [showError]="getField('email').status === 'PENDING'"
                             msgError="Validando email" alertColor="INFO"></app-field-control-error>
-                        <app-field-control-error alertColor="INFO" [showError]="formulario.get('email').status === 'VALID'"
+                        <app-field-control-error alertColor="INFO" [showError]="getField('email').status === 'VALID'"
                             msgError="Email valido"></app-field-control-error>
                     </div>
 
@@ -49,7 +51,7 @@
                           [msgError]="fieldRequiredMsg('emailConfirmation')"></app-field-control-error>
                           <app-field-control-error [showError]="fieldHasError('emailConfirmation')"
                           [msgError]="fieldRequiredMsg('emailConfirmation')"></app-field-control-error>
-                      <app-field-control-error [showError]="!fieldRequired('emailConfirmation') && formulario.get('emailConfirmation').hasError('equalsTo')"
+                      <app-field-control-error [showError]="!fieldRequired('emailConfirmation') && getField('emailConfirmation').hasError('equalsTo')"
                           msgError="A confirmação do email não condiz com o email "></app-field-control-error>
                   </div>
                 </article>
@@ -62,7 +64,7 @@
                       </div>
                       <app-field-control-error [showError]="fieldRequired('endereco.cep')"
                         [msgError]="fieldRequiredMsg('endereco.cep')"></app-field-control-error>
-                      <app-field-control-error [showError]="formulario.get('endereco.cep').hasError('cepInvalido')"
+                      <app-field-control-error [showError]="getField('endereco.cep').hasError('cepInvalido')"
                         msgError="Cep inválido"></app-field-control-error>
                     </div>
 
@@ -81,7 +83,7 @@
                         <div class="col-sm">
                             <label class="form-label" for="estado">Estado</label>
                             <select class="form-select" aria-label="Default select state" formControlName="estado">
-                                <option *ngFor="let state of $states | async" [value]="state.sigla">{{state.sigla}}</option>
+                                <option *ngFor="let state of states" [value]="state.sigla">{{state.sigla}}</option>
                             </select>
                         </div>
                         <div class="col-sm">
@@ -117,7 +119,7 @@
 
                 <div class="buttons d-grid gap-2 d-md-flex justify-content-md-start">
                     <button type="button" class="btn btn-outline-success" [disabled]="!formulario.valid">Submit</button>
-                    <button type="button" class="btn btn-outline-primary" (click)="formulario.reset()">New</button>
+                    <button type="button" class="btn btn-outline-primary" (click)="reset()">New</button>
                 </div>
             </form>
         </div>

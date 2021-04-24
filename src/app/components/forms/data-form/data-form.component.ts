@@ -8,6 +8,7 @@ import { EstadosBr } from './../models/estado-br';
 import { FormValidations } from '../utils/form-validations';
 import { VerifyEmailServiceService } from './services/verifyEmailService.service';
 import { distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
+import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 
 
 @Component({
@@ -15,11 +16,11 @@ import { distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
   templateUrl: './data-form.component.html',
   styleUrls: ['./data-form.component.css']
 })
-export class DataFormComponent implements OnInit {
+export class DataFormComponent extends BaseFormComponent implements OnInit {
 
-  formulario: FormGroup;
+  // $states: Observable<EstadosBr[]>;
 
-  $states: Observable<EstadosBr[]>;
+  states: EstadosBr[];
 
   cities: CidadesBr[];
 
@@ -27,7 +28,9 @@ export class DataFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private addressService: AddressService,
-              private verifyEmailService: VerifyEmailServiceService) { }
+              private verifyEmailService: VerifyEmailServiceService) {
+              super();
+              }
 
   ngOnInit(): void {
 
@@ -51,11 +54,10 @@ export class DataFormComponent implements OnInit {
 
     });
 
-    this.$states = this.addressService.getStates();
+    // this.$states = this.addressService.getStates();
 
-    this.addressService.getCities('0').subscribe((data) => {
-      console.log(data[0]);
-    });
+    this.addressService.getStates()
+      .subscribe(dados => this.states = dados);
 
     this.formulario.get('endereco.cep').statusChanges
       .pipe(
@@ -67,6 +69,12 @@ export class DataFormComponent implements OnInit {
       )
       .subscribe(dados => dados ? this.populaFormEndereco(dados) : {});
 
+    this.formulario.get('endereco.estado').valueChanges
+        .pipe(
+          map(estado => this.states.find(e => e.sigla === estado)),
+          switchMap((estado: EstadosBr) => this.addressService.getCities(estado.id)),
+        ).subscribe(cidades => this.cities = cidades);
+
   }
 
   frameworksAsArray(): FormArray {
@@ -76,21 +84,6 @@ export class DataFormComponent implements OnInit {
   buildFrameworks(): FormArray {
     const values = this.frameworksLabels.map(v => new FormControl(false));
     return this.formBuilder.array(values, FormValidations.requiredMinCheckbox(1));
-  }
-
-  fieldRequired(field: string): boolean {
-    return this.formulario.get(field).hasError('required') &&
-      (this.formulario.get(field).touched || this.formulario.get(field).dirty);
-  }
-
-  fieldHasError(field: string): boolean {
-    return !this.fieldRequired(field) &&
-      !this.formulario.get(field).valid &&
-      this.formulario.get(field).touched;
-  }
-
-  fieldRequiredMsg(field: string): string {
-    return `This field has error`;
   }
 
   getCep(): void {
@@ -113,10 +106,12 @@ export class DataFormComponent implements OnInit {
       );
   }
 
+  submit(): void {
+    console.log(this.formulario.value);
+  }
+
   onSubmit(): void {
-    if (this.formulario.valid) {
-      console.log(this.formulario.value);
-    }
+    super.onSubmit();
   }
 
 }

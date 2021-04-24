@@ -10,11 +10,21 @@ import { ModalCookieComponent } from './modal-cookie/modal-cookie.component';
 
 
 @NgModule({
-  declarations: [ ColumnCardComponent, FontFamilyStyleDirective, ModalCookieComponent
-    , CamelCasePipe, ErrorMsgComponent, InputFieldComponent ],
+  declarations: [ ColumnCardComponent,
+    FontFamilyStyleDirective,
+    ModalCookieComponent,
+    CamelCasePipe,
+    ErrorMsgComponent,
+    InputFieldComponent
+   ],
   imports: [
     CommonModule
   ],
-  exports: [ ColumnCardComponent, FontFamilyStyleDirective, ModalCookieComponent, CamelCasePipe, ErrorMsgComponent, InputFieldComponent ]
+  exports: [ ColumnCardComponent,
+      FontFamilyStyleDirective,
+      ModalCookieComponent,
+      CamelCasePipe,
+      ErrorMsgComponent,
+      InputFieldComponent ]
 })
 export class SharedModule { }
