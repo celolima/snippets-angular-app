@@ -15,7 +15,7 @@ export class ErrorMsgComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.control.errors);
+
   }
 
   get errorMessage() {
