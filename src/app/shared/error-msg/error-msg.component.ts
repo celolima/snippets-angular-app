@@ -18,11 +18,8 @@ export class ErrorMsgComponent implements OnInit {
   }
 
   get errorMessage(): any {
-    if (this.label === 'Nome') {
-      console.log(this.control);
-    }
     for (const propertyName in this.control.errors) {
-      if (this.control.touched) {
+      if (this.control.touched || this.control.dirty) {
         return FormValidations.getErrorMsg(this.label, propertyName, this.control.errors[propertyName]);
       }
     }

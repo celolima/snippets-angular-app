@@ -28,7 +28,7 @@
                     <div class="mb-3">
                         <label class="form-label" for="email">Email</label>
                         <input class="form-control" type="text" id="email" formControlName="email" placeholder="seunome@email.com" required>
-
+                        <app-error-msg [control]="getField('email')" label="Email"></app-error-msg>
                         <!--
                         <app-field-control-error [showError]="fieldRequired('email')"
                             [msgError]="fieldRequiredMsg('email')"></app-field-control-error>
@@ -36,7 +36,6 @@
                             [msgError]="fieldRequiredMsg('email')"></app-field-control-error>
                         <app-error-msg [control]="getField('email')" label="Email"></app-error-msg>
                         -->
-
 
                         <app-field-control-error [showError]="getField('email').status === 'PENDING'"
                             msgError="Validando email" alertColor="INFO"></app-field-control-error>
@@ -118,7 +117,7 @@
                 </div>
 
                 <div class="buttons d-grid gap-2 d-md-flex justify-content-md-start">
-                    <button type="button" class="btn btn-outline-success" [disabled]="!formulario.valid">Submit</button>
+                    <button type="submit" class="btn btn-outline-success" [disabled]="!formulario.valid">Submit</button>
                     <button type="button" class="btn btn-outline-primary" (click)="reset()">New</button>
                 </div>
             </form>

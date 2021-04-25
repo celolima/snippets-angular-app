@@ -72,7 +72,7 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
     this.formulario.get('endereco.estado').valueChanges
         .pipe(
           map(estado => this.states.find(e => e.sigla === estado)),
-          switchMap((estado: EstadosBr) => this.addressService.getCities(estado.id)),
+          switchMap((estado: EstadosBr) => this.addressService.getCities(estado?.id)),
         ).subscribe(cidades => this.cities = cidades);
 
   }
